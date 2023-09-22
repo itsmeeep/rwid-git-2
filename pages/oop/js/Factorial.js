@@ -2,23 +2,23 @@ import { parseNumber } from "../../js/helper.js";
 
 export class Factorial {
   /** @type {number} */
-  number;
+  n;
 
   /**
-   * @param {number} number
+   * @param {number} n
    */
-  constructor(number) {
-    this.number = parseNumber(number);
+  constructor(n) {
+    this.n = parseNumber(n);
   }
 
   /**
    * Count factorial number from the given "n" value using loop way.
    */
   countUsingLoop() {
-    var result = this.number <= 0 ? 1 : this.number;
+    let result = 1;
 
-    for (let i = 1; i < this.number; i++) {
-      result = result * (this.number - i);
+    for (let index = this.n; index > 0; index--) {
+      result = result * index;
     }
 
     return result;
@@ -30,23 +30,14 @@ export class Factorial {
    * @param {number | undefined} n
    * @returns {number}
    */
-<<<<<<< HEAD:pages/oop/js/Factorial.js
   countUsingRecursive(n = undefined) {
     n ||= this.n;
 
     if (n < 2) {
-=======
-  countUsingRecursive(number = undefined) {
-    if (number == undefined) {
->>>>>>> abe1295 (fix: functional factorial html, fizzbuzz html, fibonacci html, palindrome html - change title):js/oop/Factorial.js
       return 1;
     }
 
-    if (number < 2) {
-      return 1;
-    } else {
-      return number * this.countUsingRecursive(number - 1);
-    }
+    return n * this.countUsingRecursive(n - 1);
   }
 
   /**
@@ -56,19 +47,10 @@ export class Factorial {
    * @throws {Error}
    */
   count(method) {
-<<<<<<< HEAD:pages/oop/js/Factorial.js
     if (method == "loop") {
       return this.countUsingLoop();
     } else if (method == "recursive") {
       return this.countUsingRecursive();
-=======
-    let result;
-
-    if (method === "loop") {
-      result = this.countUsingLoop();
-    } else if (method === "recursive") {
-      result = this.countUsingRecursive(this.number);
->>>>>>> abe1295 (fix: functional factorial html, fizzbuzz html, fibonacci html, palindrome html - change title):js/oop/Factorial.js
     } else {
       throw new Error("Method must be loop or recursive.");
     }
@@ -79,13 +61,10 @@ document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
 
   try {
-    const number = event.target["n"].value;
+    const n = event.target["n"].value;
     const method = event.target["method"].value;
 
-    console.log(number);
-    console.log(method);
-
-    const result = new Factorial(number).count(method);
+    const result = new Factorial(n).count(method);
 
     document.getElementById("result").textContent = result;
   } catch (error) {
