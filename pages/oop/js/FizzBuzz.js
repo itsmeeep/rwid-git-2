@@ -1,4 +1,4 @@
-import { parseNumber } from "../helper.js";
+import { parseNumber } from "../../js/helper.js";
 
 export class FizzBuzz {
   /** @type {number} */
@@ -11,6 +11,14 @@ export class FizzBuzz {
     this.sequence = parseNumber(sequence);
   }
 
+  /**
+   * Create an array filled by "fizz", "buzz", or "fizz buzz" based on
+   * this requirement below (highest priority from above).
+   *
+   * Muliples of 4 or 7: "fizz buzz"
+   * Odd sequence: "fizz"
+   * Even sequence: "buzz"
+   */
   generate() {
     let result = [];
 
@@ -34,9 +42,24 @@ document.getElementById("form").addEventListener("submit", function (event) {
   try {
     const sequence = event.target["sequence"].value;
 
+<<<<<<< HEAD:js/oop/FizzBuzz.js
     const result = new FizzBuzz(sequence).generate();
+=======
+    const fizzBuzzs = new FizzBuzz(sequence).generate();
+>>>>>>> f223bcd7756ef17616c19835963a7946e0b7b5d2:pages/oop/js/FizzBuzz.js
 
-    document.getElementById("result").textContent = JSON.stringify(result);
+    document.getElementById("result").innerHTML = fizzBuzzs
+      .map(
+        (fizzBuzz, index) =>
+          `<div class="result-item-fizzbuzz bg-${
+            {
+              "fizz buzz": "red",
+              fizz: "blue",
+              buzz: "green",
+            }[fizzBuzz]
+          }">${index + 1} ${fizzBuzz}</div>`,
+      )
+      .join("");
   } catch (error) {
     alert(error.message);
     console.error(error);

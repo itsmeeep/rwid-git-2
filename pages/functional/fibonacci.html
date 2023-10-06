@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RWID Git - Fibonacci</title>
+    <link
+      rel="shortcut icon"
+      href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../css/index.css" />
+  </head>
+
+  <body>
+    <main class="main-container">
+      <h1>Fibonacci (Functional)</h1>
+
+      <form id="form">
+        <div class="input-number-container">
+          <label for="sequence">Input the length of the array</label>
+          <input
+            type="number"
+            name="sequence"
+            id="sequence"
+            min="1"
+            step="1"
+            required="required"
+          />
+        </div>
+
+        <label>Choose the method</label>
+        <div class="method-container">
+          <label for="method-loop" class="method-item">
+            <input
+              type="radio"
+              name="method"
+              id="method-loop"
+              value="loop"
+              required="required"
+            />
+            <span>Loop</span></label
+          >
+          <label for="method-recursive" class="method-item">
+            <input
+              type="radio"
+              name="method"
+              id="method-recursive"
+              value="recursive"
+              required="required"
+            />
+            <span>Recursive</span></label
+          >
+        </div>
+
+        <button type="submit">Generate Fibonacci</button>
+      </form>
+
+      <p><strong>Result:</strong></p>
+      <div class="result-container-fibonacci" id="result"></div>
+
+      <p><a href="/">Back to Homepage</a></p>
+    </main>
+
+    <script type="module" src="./js/fibonacci.js"></script>
+  </body>
+</html>

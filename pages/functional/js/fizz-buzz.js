@@ -1,4 +1,4 @@
-import { parseNumber } from "../helper.js";
+import { parseNumber } from "../../js/helper.js";
 
 /**
  * Create an array filled by "fizz", "buzz", or "fizz buzz" based on
@@ -34,9 +34,20 @@ document.getElementById("form").addEventListener("submit", function (event) {
   try {
     const sequence = event.target["sequence"].value;
 
-    const result = generateFizzBuzz(sequence);
+    const fizzBuzzs = generateFizzBuzz(sequence);
 
-    document.getElementById("result").textContent = JSON.stringify(result);
+    document.getElementById("result").innerHTML = fizzBuzzs
+      .map(
+        (fizzBuzz, index) =>
+          `<div class="result-item-fizzbuzz bg-${
+            {
+              "fizz buzz": "red",
+              fizz: "blue",
+              buzz: "green",
+            }[fizzBuzz]
+          }">${index + 1} ${fizzBuzz}</div>`,
+      )
+      .join("");
   } catch (error) {
     alert(error.message);
     console.error(error);

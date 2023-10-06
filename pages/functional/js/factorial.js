@@ -1,4 +1,4 @@
-import { parseNumber } from "../helper.js";
+import { parseNumber } from "../../js/helper.js";
 
 /**
  * Count factorial number from the given "n" value using loop way.
@@ -9,8 +9,15 @@ function countFactorialUsingLoop(n) {
   n = parseNumber(n);
   let result = n <= 0 ? 1 : n;
 
+<<<<<<< HEAD:js/functional/factorial.js
   for (let i = 1; i < n; i++) {
     result = result * (n - i);
+=======
+  let result = 1;
+
+  for (let index = n; index > 0; index--) {
+    result *= index;
+>>>>>>> f223bcd7756ef17616c19835963a7946e0b7b5d2:pages/functional/js/factorial.js
   }
 
   return result;
@@ -20,6 +27,7 @@ function countFactorialUsingLoop(n) {
  * Count factorial number from the given "n" value using recursive way.
  *
  * @param {number} n
+ * @returns {number}
  */
 function countFactorialUsingRecursive(n) {
   n = parseNumber(n);
@@ -31,6 +39,23 @@ function countFactorialUsingRecursive(n) {
   }
 }
 
+/**
+ * Count factorial number from the given "n" value.
+ *
+ * @param {number} n
+ * @param {"loop" | "recursive"} method
+ * @throws {Error}
+ */
+function countFactorial(n, method) {
+  if (method == "loop") {
+    return countFactorialUsingLoop(n);
+  } else if (method == "recursive") {
+    return countFactorialUsingRecursive(n);
+  } else {
+    throw new Error("Method must be loop or recursive.");
+  }
+}
+
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -38,15 +63,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
     const n = event.target["n"].value;
     const method = event.target["method"].value;
 
-    let result;
-
-    if (method === "loop") {
-      result = countFactorialUsingLoop(n);
-    } else if (method === "recursive") {
-      result = countFactorialUsingRecursive(n);
-    } else {
-      throw new Error("Method must be loop or recursive.");
-    }
+    const result = countFactorial(n, method);
 
     document.getElementById("result").textContent = result;
   } catch (error) {
